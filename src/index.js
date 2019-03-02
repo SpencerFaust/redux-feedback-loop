@@ -4,5 +4,19 @@ import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//Redux
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+const feedback = (state=[], action) => {
+    return state;
+}
+
+const storeInstance = createStore(
+    combineReducers({
+        feedback,
+    }),    
+);
+
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
