@@ -17,3 +17,25 @@
   font-size: large;
 }
 
+.reviewDiv {
+  border: 3px solid black;
+  width: 40vw;
+  text-align: center;
+  margin: auto;
+  padding: 5px;
+}
+
+.feedbackDiv {
+  border: 3px solid black;
+  width: 40vw;
+  text-align: center;
+  margin: auto;
+  padding: 5px;
+  padding-bottom: 10px;
+}
+
+#commentInput {
+  width: 300px;
+  height: 150px;
+}
+
