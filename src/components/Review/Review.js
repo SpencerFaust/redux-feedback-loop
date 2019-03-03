@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { withRouter } from "react-router";
 
 
 class Review extends Component {
@@ -8,14 +10,14 @@ class Review extends Component {
     value: false,
   }
 
-componentDidMount() {
-    this.onReady();
-}
+// componentDidMount() {
+//     this.onReady();
+// }
 
-onReady = () => {
-    this.props.dispatch({ type: 'REQUEST'})
-    console.log(this.props.feedback);
-;}
+// onReady = () => {
+//     this.props.dispatch({ type: 'REQUEST'})
+//     console.log(this.props.feedback);
+// ;}
 
 finalized = () => {
   if (this.props.feedback.comment === '') {
@@ -28,9 +30,15 @@ finalized = () => {
 
 handleSubmit = (event) => {
   event.preventDefault();
-  
-  this.props.history.push('/Success');
-}
+  axios({
+    url: '/',
+    method: 'POST',
+    data: this.props.feedback,
+  }).then((response) => {
+    console.log('DB response:', response);
+    this.props.history.push('/Success');
+  });
+};
 
   render() {
     return (
@@ -40,7 +48,7 @@ handleSubmit = (event) => {
           Understanding: {this.props.feedback.understanding}       <br/>
           Support: {this.props.feedback.supported}             <br/>
           Comments: <br/> {this.props.feedback.comment} <br/>
-          <button id="submitButton" onClick={this.handleSubmit} disabled={this.finalized()}>Submit Feedback</button>
+          <button onClick={this.handleSubmit} disabled={this.finalized()}>Submit Feedback</button>
       </div>
     );
   }
@@ -50,4 +58,4 @@ const mapReduxStateToProps = (reduxState) => {
   return reduxState;
 };
 
-export default connect(mapReduxStateToProps)(Review);
+export default connect(mapReduxStateToProps)(withRouter(Review));

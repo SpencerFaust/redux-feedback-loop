@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //Compnents
@@ -11,6 +10,7 @@ import Supported from '../Supported/Supported';
 import Comment from '../Comment/Comment';
 import Home from '../Home/Home';
 import Success from '../Success/Success';
+import Review from '../Review/Review';
 
 class App extends Component {
 
@@ -35,9 +35,11 @@ handleClick = (event) => {
             <Route exact path='/Supported' component={Supported} />
             <Route exact path='/Comment' component={Comment} />
             <Route exact path='/Success' component={Success} />
+            <Route exact path='/Review' component={Review} />
           </div>
         </Router>
         <br/>
+        
       </div>
     );
   }

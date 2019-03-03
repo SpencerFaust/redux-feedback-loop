@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import Review from '../Review/Review';
 
 
@@ -8,7 +7,8 @@ class Success extends Component {
 
 handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push('/');
+    this.props.dispatch({ type: 'RESET'});
+    this.props.history.push('/Feeling');
 }
 
   render() {
@@ -29,4 +29,4 @@ const mapReduxStateToProps = (reduxState) => {
   return reduxState;
 };
 
-export default connect(mapReduxStateToProps)(Comment);
+export default connect(mapReduxStateToProps)(Success);

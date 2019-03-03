@@ -7,7 +7,6 @@ import registerServiceWorker from './registerServiceWorker';
 //Redux
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import Axios from 'axios';
 
 const feedback = (state={comment: ''}, action) => {
     if (action.type === 'REQUEST') {
@@ -30,6 +29,10 @@ const feedback = (state={comment: ''}, action) => {
         console.log('Comment set to:', action.payload);
         return {...state, comment: action.payload};
     };
+    if (action.type === 'RESET') {
+        console.log('Redux state reset.');
+        return {comment: ''}
+    }
     return state;
 };
 
